@@ -10,11 +10,13 @@ import { useForm } from '@inertiajs/react';
 import { useRef, useState } from 'react';
 import PrimaryButton from '@/Components/PrimaryButton';
 import BlueButton from '@/Components/BlueButton';
+import Select from '@/Components/Select';
 
 export default function Dashboard({auth, menus}) {
 
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef();
+    const categoryInput = useRef();
 
     const {
         data,
@@ -103,6 +105,27 @@ export default function Dashboard({auth, menus}) {
                     
                                             <InputError
                                                 message={errors.password}
+                                                className="mt-2"
+                                            />
+                                        </div>
+
+                                        <div className="mt-6">  
+                                            <Select
+                                                id="category"
+                                                name="category"
+                                                ref={categoryInput}
+                                                value={data.category}
+                                                onChange={(e) =>
+                                                    setData('category', e.target.value)
+                                                }
+                                                className="mt-1 block w-3/4"
+                                                placeholder="category"
+                                                options={['',1, 2, 3, 4, 5]}
+                                                >
+                                                </Select>
+                    
+                                            <InputError
+                                                message={errors.category}
                                                 className="mt-2"
                                             />
                                         </div>

@@ -1,20 +1,15 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
 export default forwardRef(function TextInput(
-    { option = null, className = '', isFocused = false, ...props },
+    { options = null, className = '', isFocused = false, ...props },
     ref,
-) {
-    const localRef = useRef(null);
-
-    useImperativeHandle(ref, () => ({
-        focus: () => localRef.current?.focus(),
-    }));
+) { const input = ref ? ref : useRef();
 
     useEffect(() => {
         if (isFocused) {
-            localRef.current?.focus();
+            input.current.focus();
         }
-    }, [isFocused]);
+    }, []);
 
     return (
         <select
@@ -24,9 +19,9 @@ export default forwardRef(function TextInput(
                 'rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ' +
                 className
             }
-            ref={localRef}
+            ref={input}
         >
-            {option.map((option) => (
+            {options.map((option) => (
                 <option value={option} key={option}>{option}</option>
             ))}
         </ select>

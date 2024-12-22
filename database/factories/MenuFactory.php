@@ -16,7 +16,7 @@ class MenuFactory extends Factory
      */
     public function definition(): array
     {
-        $categorys = ['React', 'Vue', 'Laravel'];
+        $categories = [1, 2, 3, 4, 5];
         return [
             //
             'name' => $this -> faker -> realText(10),
